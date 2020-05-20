@@ -37,7 +37,7 @@ import DataView = powerbi.DataView;
 import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
 import DataViewCategoricalColumn = powerbi.DataViewCategoryColumn;
 import DataViewValueColumns = powerbi.DataViewValueColumns;
-import {IFilterColumnTarget,BasicFilter} from "powerbi-models";
+import { IFilterColumnTarget, BasicFilter } from "powerbi-models";
 import FilterAction = powerbi.FilterAction;
 import IVisualHost = powerbi.extensibility.visual.IVisualHost;
 import { fabric } from "fabric";
@@ -57,9 +57,9 @@ export class Visual implements IVisual {
     private x = [];
     private y = [];
     private c = ['#d4c685', '#f7ef81', '#cfe795', '#a7d3a6', '#add2c2'];
-            
+
     constructor(options: VisualConstructorOptions) {
-       // console.log('Visual constructor', options);
+        // console.log('Visual constructor', options);
         this.target = options.element;
         this.visualHost = options.host;
         for (let i = 0; i != 9; ++i) this.x.push(i * this.xScale);
@@ -89,12 +89,12 @@ export class Visual implements IVisual {
         }
         this.canvas.clear();
         this.canvas.off();
-        for (var i = 0; i < categories.values.length ; i++){
+        for (var i = 0; i < categories.values.length; i++) {
             this.canvas.add(this.makeHex(names.values[i].toString(),
-            this.x[parseInt(hexval[0].values[i].toString())],
-            this.y[parseInt(hexval[1].values[i].toString())],
-            this.c[parseInt(hexval[2].values[i].toString())],
-            parseInt(categories.values[i].toString())))
+                this.x[parseInt(hexval[0].values[i].toString())],
+                this.y[parseInt(hexval[1].values[i].toString())],
+                this.c[parseInt(hexval[2].values[i].toString())],
+                parseInt(categories.values[i].toString())))
         }
         this.canvas.on('mouse:down', e => {
             let thisobject = 'canvas'
@@ -107,19 +107,19 @@ export class Visual implements IVisual {
             } else {
                 console.log("data not present")
             }
-            if (thisobject == 'group'){
-            let categories: DataViewCategoricalColumn = this.dataViews[0].categorical.categories[0];
+            if (thisobject == 'group') {
+                let categories: DataViewCategoricalColumn = this.dataViews[0].categorical.categories[0];
 
-            let columnTarget: IFilterColumnTarget = {
-                table: categories.source.queryName.substr(0, categories.source.queryName.indexOf('.')),
-                column: categories.source.displayName
-            };
-            let values = [e.target.name];
-            let filter = new BasicFilter(columnTarget, "In", values);
-            this.visualHost.applyJsonFilter(filter, "general", "filter", FilterAction.merge);
+                let columnTarget: IFilterColumnTarget = {
+                    table: categories.source.queryName.substr(0, categories.source.queryName.indexOf('.')),
+                    column: categories.source.displayName
+                };
+                let values = [e.target.name];
+                let filter = new BasicFilter(columnTarget, "In", values);
+                this.visualHost.applyJsonFilter(filter, "general", "filter", FilterAction.merge);
             }
         })
-            
+
 
     }
 
@@ -154,7 +154,6 @@ export class Visual implements IVisual {
         let t = (s.length == 1 ? 40 : 30)
         t = (s.length == 3 ? 20 : t)
         let l = (m < 9 ? 23 - m / 2 : 7)
-        console.log(" id: ",id, "len: ", s.length.toString())
 
         let textbox = new fabric.Textbox(id, {
             left: l,
@@ -171,7 +170,12 @@ export class Visual implements IVisual {
                 name: code.toString(),
                 selectable: false,
                 hoverCursor: "pointer"
-            })
+            });
+
+        // Add shadow
+        let shadow = "2px 5px 5px rgba(94, 128, 191, 0.5)";
+        group.setShadow(shadow);
+        //
 
         group.on('mouseover', function (e) {
             group.animate('opacity', .8, {
@@ -184,7 +188,7 @@ export class Visual implements IVisual {
             this.canvas.renderAll();
             //console.log(e.target.name);
         });
-        
+
         return group;
     }
     public hexClick(name: string) {
