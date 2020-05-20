@@ -1,1 +1,25 @@
-{"visual":{"name":"hexmap","displayName":"hexmap","guid":"hexmapC0EFFA154FA24B2A8A8C72D27F9FBA30","visualClassName":"Visual","version":"1.0.0","description":"","supportUrl":"","gitHubUrl":""},"apiVersion":"2.6.0","author":{"name":"","email":""},"assets":{"icon":"assets/icon.png"},"externalJS":null,"style":"style/visual.less","capabilities":"capabilities.json","dependencies":null,"stringResources":[]}
+{
+    "visual": {
+        "name": "hexmap",
+        "displayName": "hexmap",
+        "guid": "hexmapC0EFFA154FA24B2A8A8C72D27F9FBA30",
+        "visualClassName": "Visual",
+        "version": "1.0.0",
+        "description": "PowerBI Custom HexMap",
+        "supportUrl": "https://paradigmbi.com.au/",
+        "gitHubUrl": "https://github.com/MikeAinOz/HexMap"
+    },
+    "apiVersion": "2.6.0",
+    "author": {
+        "name": "Mike Allen",
+        "email": "mike@mikeallen.com.au"
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": null,
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}
