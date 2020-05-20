@@ -2,4 +2,8 @@ node_modules
 package-lock.json
 tslint.json
 webpack.statistics.dev.html
-.tmp/precompile
+webpack.statistics.prod.html
+.tmp/
+.dist/
+dist/hexmapC0EFFA154FA24B2A8A8C72D27F9FBA30.1.0.0.pbiviz
+dist/package.json
